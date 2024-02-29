@@ -1,0 +1,16 @@
+{
+  "name": "openinappassessmentbackend",
+  "version": "1.0.0",
+  "description": "openinapp backend assesment the todo application utilizing the cron js library of npm ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openinapp",
+    "listed",
+    "backend"
+  ],
+  "author": "Manish-rai-dev",
+  "license": "ISC"
+}
