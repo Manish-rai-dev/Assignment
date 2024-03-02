@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import validator from "validator";
 
-
 class UserController {
     createToken = (id) => {
         return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -27,7 +26,7 @@ class UserController {
             if (!isMatch) {
                 return res.status(400).json({ message: "Invalid credentials" })
             }
-            const token = createToken(user._id)
+            const token = this.createToken(user._id)
             res.status(200).json({ user, token })
         } catch (error) {
             res.status(500).json({ message: error.message })
@@ -35,7 +34,7 @@ class UserController {
     }
 
     registerUser = async (req, res) => {
-        const { name, email, password } = req.body;
+        const { name, email, password, phone_number } = req.body;
         try {
             //check if user already exists
             const exists = await userModel.findOne({ email })
@@ -54,9 +53,9 @@ class UserController {
             const salt = await bcrypt.genSalt(10);
             const hashedPassword = await bcrypt.hash(password, salt)
 
-            const newUser = new userModel({ name, email, password: hashedPassword })
+            const newUser = new userModel({ name, email, password: hashedPassword, phone_number })
             const user = await newUser.save()
-            const token = createToken(user._id)
+            const token = this.createToken(user._id)
             res.status(200).json({ user, token })
 
         } catch (error) {

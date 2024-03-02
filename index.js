@@ -1,9 +1,10 @@
 import express from "express"
 import cors from "cors"
-import userRouter from "./routes/user.js"
-// import taskRouter from "./routes/task.js"
 
-import "./db/mogodbconfig.js";
+import userRouter from "./routes/users.js"
+import taskRouter from "./routes/task.js"
+
+import "./db/mongodbConfig.js"
 
 import dotenv from "dotenv"
 dotenv.config()
@@ -20,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 
 //api endpoints
 app.use("/api/v0/user", userRouter)
-// app.use("/api/v0/task", taskRouter)
+app.use("/api/v0/task", taskRouter)
 
 
 // catch 404 and forward to error handler

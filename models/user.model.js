@@ -7,5 +7,7 @@ const userSchema = new mongoose.Schema({
     phone_number: {type: Number, required: true},
     priority: {type: Number}
 })
+
+
 const userModel = mongoose.model("User", userSchema);
 export default userModel;
